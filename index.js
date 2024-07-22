@@ -16,8 +16,10 @@ function addtask(value){
     deleteButton.textContent = 'X';
     radioButton.type = 'checkbox';
     radioButton.value = value;
-    radioButton.style.borderRadius="50%";
-    radioButton.style.border="none";
+    deleteButton.style.borderRadius="50%";
+    deleteButton.style.border="none";
+    deleteButton.style.background="transparent";
+    deleteButton.style.textAlign="right";
     inputtext.textContent = inputtasks;
     tasklist.appendChild(taskContainer);
     taskContainer.appendChild(radioButton);
