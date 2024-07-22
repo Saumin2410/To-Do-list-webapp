@@ -16,7 +16,9 @@ function addtask(value){
     deleteButton.textContent = 'X';
     radioButton.type = 'checkbox';
     radioButton.value = value;
-    inputtext.textContent=inputtasks;
+    radioButton.style.borderRadius="50%";
+    radioButton.style.border="none";
+    inputtext.textContent = inputtasks;
     tasklist.appendChild(taskContainer);
     taskContainer.appendChild(radioButton);
     taskContainer.appendChild(inputtext);
@@ -27,6 +29,7 @@ function addtask(value){
         if (this.checked) {
         inputtext.style.textDecoration = "line-through";
         inputtext.style.textDecorationColor = "hsl(0, 0%, 35%)";
+        inputtext.style.color="hsl(0, 0%, 45%)"
 
         }
         else {  //Changed to else
