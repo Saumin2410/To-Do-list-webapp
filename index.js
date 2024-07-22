@@ -1,4 +1,4 @@
-//first comment
+
 function addtask(value){
     const tasklist = document.getElementById("tasklist");
     const taskContainer = document.createElement("div");
