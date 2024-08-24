@@ -1,73 +1,81 @@
-function addtask(value) {
-    const tasklist = document.getElementById("tasklist");
-    const inputtasks = document.getElementById("inputtasks").value;
+document.addEventListener('DOMContentLoaded', function() {
+    const addTitleBtn = document.getElementById('addTitleBtn');
+    addTitleBtn.addEventListener('click', addTitle);
+});
 
-    if (inputtasks === "") {
+function addTitle() {
+    const taskList = document.getElementById("taskList");
+    const inputTitle = document.getElementById("inputTitle");
+
+    if (inputTitle.value === "") {
+        alert("Title cannot be empty");
+        return;
+    }
+
+    const titleContainer = document.createElement("div");
+    titleContainer.className = 'titleContainer';
+
+    const titleElement = document.createElement("h3");
+    titleElement.className = 'taskTitle';
+    titleElement.textContent = inputTitle.value;
+
+    const taskInput = document.createElement("input");
+    taskInput.type = 'text';
+    taskInput.placeholder = 'Add a task';
+
+    const addTaskButton = document.createElement("button");
+    addTaskButton.textContent = 'Add Task';
+    addTaskButton.onclick = function() { addTask(titleContainer); };
+
+    titleContainer.appendChild(titleElement);
+    titleContainer.appendChild(taskInput);
+    titleContainer.appendChild(addTaskButton);
+
+    taskList.appendChild(titleContainer);
+    inputTitle.value = "";
+}
+
+function addTask(titleContainer) {
+    const taskInput = titleContainer.querySelector('input[type="text"]');
+    
+    if (taskInput.value === "") {
         alert("Task cannot be empty");
         return;
     }
 
     const taskContainer = document.createElement("div");
     taskContainer.className = 'taskContainer';
-    
-    const inputtext = document.createElement("input");
-    const radioButton = document.createElement('input');
+
+    const checkbox = document.createElement('input');
+    checkbox.type = 'checkbox';
+
+    const taskText = document.createElement("input");
+    taskText.type = 'text';
+    taskText.value = taskInput.value;
+    taskText.readOnly = true;
+
     const deleteButton = document.createElement('button');
-
-    taskContainer.style.display = 'flex';
-    taskContainer.style.alignItems = 'center';
-    taskContainer.style.marginBottom = '20px';
-    taskContainer.style.marginRight= '30px';
-    taskContainer.style.padding = '10px';
-    taskContainer.style.backgroundColor = '#ffffff';
-    taskContainer.style.borderRadius = '4px';
-    taskContainer.style.boxShadow = '0 1px 3px rgba(0, 0, 0, 0.1)';
-
-    inputtext.type = 'text';
-    inputtext.value = inputtasks;
-    inputtext.readOnly = true;
-    inputtext.style.flexGrow = '1';
-    inputtext.style.border = 'none';
-    inputtext.style.backgroundColor = 'transparent';
-    inputtext.style.fontSize = '20px';
-    inputtext.style.color = '#333';
-
-    radioButton.type = 'checkbox';
-    radioButton.value = value;
-    radioButton.style.marginRight = '10px';
-    radioButton.style.cursor = 'pointer';
-
-    deleteButton.type = 'button';
     deleteButton.textContent = 'X';
-    deleteButton.style.marginLeft = '10px';
-    deleteButton.style.borderRadius = "50%";
-    deleteButton.style.border = "none";
-    deleteButton.style.background = "red";
-    deleteButton.style.color = "white";
-    deleteButton.style.width = "24px";
-    deleteButton.style.height = "24px";
-    deleteButton.style.cursor = "pointer";
+    deleteButton.className = 'deleteButton';
 
-    tasklist.appendChild(taskContainer);
-    taskContainer.appendChild(radioButton);
-    taskContainer.appendChild(inputtext);
+    taskContainer.appendChild(checkbox);
+    taskContainer.appendChild(taskText);
     taskContainer.appendChild(deleteButton);
-    document.getElementById("inputtasks").value = "";
 
-    radioButton.onchange = function() {
+    titleContainer.insertBefore(taskContainer, taskInput);
+    taskInput.value = "";
+
+    checkbox.onchange = function() {
         if (this.checked) {
-            inputtext.style.textDecoration = "line-through";
-            inputtext.style.textDecorationColor = "hsl(0, 0%, 35%)";
-            inputtext.style.color = "hsl(0, 0%, 45%)";
+            taskText.style.textDecoration = "line-through";
+            taskText.style.color = "hsl(0, 0%, 45%)";
         } else {
-            inputtext.style.textDecoration = "none";
-            inputtext.style.color = "#333";
+            taskText.style.textDecoration = "none";
+            taskText.style.color = "#333";
         }
     };
 
     deleteButton.onclick = function() {
         taskContainer.remove();
-        console.log('5'== 5);
-        console.log('5'=== 5);
     };
 }
