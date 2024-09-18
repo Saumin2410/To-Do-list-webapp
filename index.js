@@ -15,9 +15,38 @@ function addTitle() {
     const titleContainer = document.createElement("div");
     titleContainer.className = 'titleContainer';
 
+    const titleHeader = document.createElement("div");
+    titleHeader.className = 'titleHeader';
+    
     const titleElement = document.createElement("h3");
     titleElement.className = 'taskTitle';
     titleElement.textContent = inputTitle.value;
+
+    const delete_ = document.createElement('button');
+    delete_.textContent = 'X';
+    delete_.className = 'delete';
+    delete_.style.position= 'absolute';
+    delete_.style.top='10px';
+    delete_.style.right='10px';
+    delete_.style.padding='0';
+    delete_.style.marginLeft = '10px';
+    delete_.style.borderRadius = "60%";
+    delete_.style.border = "none";
+    delete_.style.background = "red";
+    delete_.style.color = "white";
+    delete_.style.width = "20px";
+    delete_.style.height = "20px";
+    delete_.style.cursor = "pointer";
+    delete_.style.display="flex";
+    delete_.style.justifyContent="center";
+    delete_.style.alignItems="center";
+    delete_.style.fontSize='12px'
+    delete_.onclick = function() { 
+        titleContainer.remove(); 
+    };
+
+    const taskListContainer = document.createElement("div");
+    taskListContainer.className = 'taskListContainer';
 
     const taskInput = document.createElement("input");
     taskInput.type = 'text';
@@ -25,9 +54,12 @@ function addTitle() {
 
     const addTaskButton = document.createElement("button");
     addTaskButton.textContent = 'Add Task';
-    addTaskButton.onclick = function() { addTask(titleContainer); };
+    addTaskButton.onclick = function() { addTask(taskListContainer, taskInput); 
+    };
 
     titleContainer.appendChild(titleElement);
+    titleContainer.appendChild(delete_);
+    titleContainer.appendChild(taskListContainer);
     titleContainer.appendChild(taskInput);
     titleContainer.appendChild(addTaskButton);
 
@@ -35,9 +67,7 @@ function addTitle() {
     inputTitle.value = "";
 }
 
-function addTask(titleContainer) {
-    const taskInput = titleContainer.querySelector('input[type="text"]');
-    
+function addTask(taskListContainer,taskInput) {
     if (taskInput.value === "") {
         alert("Task cannot be empty");
         return;
@@ -57,12 +87,27 @@ function addTask(titleContainer) {
     const deleteButton = document.createElement('button');
     deleteButton.textContent = 'X';
     deleteButton.className = 'deleteButton';
+    deleteButton.style.padding = '0';
+    deleteButton.style.marginLeft = '10px';
+    deleteButton.style.borderRadius = "60%";
+    deleteButton.style.border = "none";
+    deleteButton.style.background = "red";
+    deleteButton.style.color = "white";
+    deleteButton.style.width = "30px";
+    deleteButton.style.height = "30px";
+    deleteButton.style.cursor = "pointer";
+    
+    // Center the 'X'
+    deleteButton.style.textAlign = "center";
+    deleteButton.style.lineHeight = "30px";
+    deleteButton.style.display = "inline-block";
+    
 
     taskContainer.appendChild(checkbox);
     taskContainer.appendChild(taskText);
     taskContainer.appendChild(deleteButton);
 
-    titleContainer.insertBefore(taskContainer, taskInput);
+    taskListContainer.appendChild(taskContainer);
     taskInput.value = "";
 
     checkbox.onchange = function() {

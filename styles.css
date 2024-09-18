@@ -4,14 +4,15 @@ body {
     box-sizing: border-box;
     display: flex;
     justify-content: center;
-    align-items: center;
-    margin: auto;
+    align-items: flex-start; 
+    margin: 0;
+    padding: 20px 0; 
     font-family: "Nunito", sans-serif;
     min-height: 100vh;
 }
 
 #container {
-    margin: 50px auto;
+    margin: 0;
     padding: 20px;
     text-align: center;
     background-image: linear-gradient(315deg, #fe887d 0%, #f7d1d1 100%);
@@ -54,6 +55,7 @@ button {
     cursor: pointer;
     background-color: #ff5c20;
     color: white;
+    margin-left: 10px;
 }
 
 .titleContainer {
@@ -62,14 +64,20 @@ button {
     padding: 15px;
     margin-bottom: 20px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    position: relative;
+}
+
+.titleHeader{
+    margin-bottom: 15px;
 }
 
 .taskTitle {
     font-size: 24px;
     font-weight: bold;
     margin-top: 0;
-    margin-bottom: 15px;
+    margin-bottom: 10px;
     text-align: left;
+    padding-right: 30px;
     color: #333;
 }
 
@@ -96,17 +104,6 @@ button {
     cursor: pointer;
 }
 
-.deleteButton {
-    margin-left: 10px;
-    border-radius: 50%;
-    border: none;
-    background: red;
-    color: white;
-    width: 24px;
-    height: 24px;
-    cursor: pointer;
-}
-
 /* New styles for the add task input and button */
 .titleContainer input[type="text"] {
     border: 2px solid #ff5c20;
@@ -117,4 +114,7 @@ button {
 .titleContainer button {
     border-radius: 0 20px 20px 0;
     margin-left: -2px; /* Adjust for border overlap */
+}
+.taskListContainer{
+    margin-bottom:10px;
 }
